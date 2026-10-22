@@ -38,14 +38,32 @@
 
     <section class="suitcase-card">
       <p class="section-label">YOUR SUITCASE</p>
+
       <div id="suitcase-items" class="suitcase-items">
         <p class="empty-suitcase">Your suitcase is empty.</p>
       </div>
+
       <p id="game-message" class="game-message" aria-live="polite">
         Select three items to unlock the time portal.
       </p>
+
       <button id="travel-button" type="button" disabled>
         Begin time travel
+      </button>
+    </section>
+
+    <section id="result-card" class="result-card" hidden>
+      <p class="section-label">TRAVEL REPORT</p>
+      <h2 id="result-title">Journey complete</h2>
+      <p id="result-story"></p>
+
+      <div class="report-stats">
+        <p><span>Time stability</span> <strong id="stability-score">0%</strong></p>
+        <p><span>Badge unlocked</span> <strong id="badge-name">None</strong></p>
+      </div>
+
+      <button id="play-again-button" type="button">
+        Pack for another journey
       </button>
     </section>
   </main>
