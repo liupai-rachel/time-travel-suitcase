@@ -105,6 +105,20 @@ function hasItem(itemName) {
   return selectedItems.includes(itemName);
 }
 
+function hasAllItems(itemNames) {
+  return itemNames.every((itemName) => hasItem(itemName));
+}
+
+function makeResult(title, explanation, story, stability, badge) {
+  return {
+    title,
+    explanation,
+    story,
+    stability,
+    badge
+  };
+}
+
 function chooseEra() {
   currentEra = eras[Math.floor(Math.random() * eras.length)];
   selectedItems = [];
@@ -199,147 +213,251 @@ function showArrivalEvent() {
 
 function getJourneyResult(choice) {
   if (currentEra.id === "jungle") {
-    if (choice === "distract" && hasItem("Mirror")) {
-      return {
-        title: "Prehistoric Diplomat",
-        story: "The velociraptor sees its reflection and immediately starts arguing with it about who has better teeth. You leave quietly while it loses the debate to itself.",
-        stability: "91%",
-        badge: "Raptor Negotiator"
-      };
+    if (choice === "hide") {
+      if (hasAllItems(["Flashlight", "Rope"])) {
+        return makeResult(
+          "Cave Explorer",
+          "You chose to hide in the cave, and you packed both a Flashlight and Rope. The flashlight found a safe route, while the rope helped you climb to safety.",
+          "You escape the velociraptor, although several prehistoric bats stare at you as if your outfit is a personal insult.",
+          "78%",
+          "Jurassic Survivor"
+        );
+      }
+
+      return makeResult(
+        "Lost in the Cave",
+        "You chose to hide in the cave, but you did not pack both a Flashlight and Rope. You could not see the path or climb out.",
+        "You spend three hours following a glowworm that turns out to be going nowhere. The dinosaur eventually gives up and leaves.",
+        "48%",
+        "Professional Cave Confuser"
+      );
     }
 
-    if (choice === "hide" && hasItem("Flashlight") && hasItem("Rope")) {
-      return {
-        title: "Cave Explorer",
-        story: "Your flashlight reveals a safe cave, and the rope gets you up a cliff. Prehistoric bats are somehow already judging your outfit.",
-        stability: "78%",
-        badge: "Jurassic Survivor"
-      };
+    if (choice === "distract") {
+      if (hasItem("Mirror")) {
+        return makeResult(
+          "Prehistoric Diplomat",
+          "You chose to create a distraction, and you packed a Mirror. The velociraptor mistakes its reflection for a rival.",
+          "It starts arguing with itself about who has better teeth. You leave quietly while it loses the debate to itself.",
+          "91%",
+          "Raptor Negotiator"
+        );
+      }
+
+      return makeResult(
+        "Accidental Dinosaur Dance Instructor",
+        "You chose to create a distraction, but you did not pack a Mirror. Your only available distraction was your own strange dance.",
+        "The velociraptor copies every move. Unfortunately, it is better at dancing than you are.",
+        "54%",
+        "Jurassic Choreographer"
+      );
     }
 
-    if (choice === "offer" && hasItem("Snack Box")) {
-      return {
-        title: "Dinosaur Dinner Host",
-        story: "The velociraptor loves your snacks and follows you around for dessert. You return with a new pet and a ruined insurance form.",
-        stability: "83%",
-        badge: "Prehistoric Food Critic"
-      };
-    }
+    if (choice === "offer") {
+      if (hasItem("Snack Box")) {
+        return makeResult(
+          "Dinosaur Dinner Host",
+          "You chose to offer a snack, and you packed a Snack Box. The velociraptor accepts your peace offering.",
+          "It follows you around for dessert. You return with a new pet dinosaur and a ruined travel insurance form.",
+          "83%",
+          "Prehistoric Food Critic"
+        );
+      }
 
-    return {
-      title: "Fern-Based Defence Strategy",
-      story: "You hide behind a very small fern. The dinosaur is briefly distracted by your extremely confusing suitcase.",
-      stability: "52%",
-      badge: "Fern Hider"
-    };
+      return makeResult(
+        "The Dinosaur Orders You Instead",
+        "You chose to offer a snack, but you did not pack a Snack Box. The velociraptor waits politely for food that does not exist.",
+        "After an awkward pause, you offer it a Mystery Key. It looks offended, but you survive the embarrassment.",
+        "45%",
+        "Terrible Host"
+      );
+    }
   }
 
   if (currentEra.id === "court") {
-    if (choice === "join" && hasItem("Fake Moustache") && hasItem("Mirror")) {
-      return {
-        title: "The Mysterious Adviser",
-        story: "Your fake moustache is so impressive that the king asks it for political advice. You accidentally declare a national Moustache Appreciation Day.",
-        stability: "94%",
-        badge: "Court Insider"
-      };
+    if (choice === "join") {
+      if (hasAllItems(["Fake Moustache", "Mirror"])) {
+        return makeResult(
+          "The Mysterious Adviser",
+          "You chose to pretend to be an adviser, and you packed a Fake Moustache and Mirror. Your disguise is surprisingly convincing.",
+          "The king asks your moustache for political advice. By sunset, you have accidentally created National Moustache Appreciation Day.",
+          "94%",
+          "Court Insider"
+        );
+      }
+
+      return makeResult(
+        "Suspicious Moustache",
+        "You chose to pretend to be an adviser, but your disguise was incomplete. The guard notices immediately.",
+        "You explain that you are a very important person from the future. The guard writes this down under 'probably nonsense.'",
+        "49%",
+        "Palace Suspect"
+      );
     }
 
-    if (choice === "investigate" && hasItem("Blank Notebook")) {
-      return {
-        title: "Royal Historian",
-        story: "You uncover a plot involving a missing crown, three geese, and a duke who is being dramatic on purpose.",
-        stability: "85%",
-        badge: "Keeper of Gossip"
-      };
+    if (choice === "investigate") {
+      if (hasItem("Blank Notebook")) {
+        return makeResult(
+          "Royal Historian",
+          "You chose to investigate the letter, and you packed a Blank Notebook. You record every detail before the letter disappears.",
+          "You uncover a plot involving a missing crown, three geese, and a duke who is being dramatic on purpose.",
+          "85%",
+          "Keeper of Gossip"
+        );
+      }
+
+      return makeResult(
+        "Secret Letter Origami",
+        "You chose to investigate the letter, but you did not pack a notebook. You try to memorise it.",
+        "You remember only the words 'crown,' 'goose,' and 'soup.' The court later calls this a very unhelpful report.",
+        "51%",
+        "Forgetful Spy"
+      );
     }
 
-    if (choice === "kitchen" && hasItem("Snack Box")) {
-      return {
-        title: "Palace Snack Expert",
-        story: "The palace chef calls your snacks 'mysterious future spices'. You leave with a crown-shaped biscuit and a job offer.",
-        stability: "74%",
-        badge: "Banquet Escapee"
-      };
-    }
+    if (choice === "kitchen") {
+      if (hasItem("Snack Box")) {
+        return makeResult(
+          "Palace Snack Expert",
+          "You chose the kitchen escape route, and you packed a Snack Box. The cooks approve of your mysterious future snacks.",
+          "They call them 'future spices' and offer you a job. You leave with a crown-shaped biscuit and several rumours.",
+          "74%",
+          "Banquet Escapee"
+        );
+      }
 
-    return {
-      title: "Uninvited Banquet Guest",
-      story: "A guard mistakes your suitcase for a fashionable hat. You escape just before someone asks you to model it for a portrait.",
-      stability: "61%",
-      badge: "Royal Confusion"
-    };
+      return makeResult(
+        "Royal Dishwasher",
+        "You chose the kitchen escape route, but you had no food to impress the cooks.",
+        "They assume you are there to wash dishes. You escape only after cleaning a saucepan the size of a bathtub.",
+        "46%",
+        "Palace Dishwasher"
+      );
+    }
   }
 
   if (currentEra.id === "neon") {
-    if (choice === "fix" && hasItem("Solar Charger") && hasItem("Duct Tape")) {
-      return {
-        title: "Neon City Repair Hero",
-        story: "You recharge the robot and repair it with duct tape. It calls this 'ancient human engineering' and gives you a five-star review.",
-        stability: "89%",
-        badge: "Robot Mechanic"
-      };
+    if (choice === "fix") {
+      if (hasAllItems(["Solar Charger", "Duct Tape"])) {
+        return makeResult(
+          "Neon City Repair Hero",
+          "You chose to repair the robot, and you packed a Solar Charger and Duct Tape. Together, they provide power and an emergency repair.",
+          "The robot calls this 'ancient human engineering' and gives you a five-star review in robot language.",
+          "89%",
+          "Robot Mechanic"
+        );
+      }
+
+      return makeResult(
+        "Robot Error 404",
+        "You chose to repair the robot, but you lacked either power or repair materials.",
+        "The robot restarts and loudly announces that you are now its unpaid technical support assistant.",
+        "50%",
+        "Future Help Desk"
+      );
     }
 
-    if (choice === "perform" && hasItem("Tiny Speaker")) {
-      return {
-        title: "Underground DJ",
-        story: "Your speaker plays one retro song. Every robot starts dancing badly, and the city gates open out of embarrassment.",
-        stability: "80%",
-        badge: "Synthwave Legend"
-      };
+    if (choice === "perform") {
+      if (hasItem("Tiny Speaker")) {
+        return makeResult(
+          "Underground DJ",
+          "You chose to distract the crowd, and you packed a Tiny Speaker. The music gives everyone something else to watch.",
+          "Every robot starts dancing badly, and the city gates open out of pure embarrassment.",
+          "80%",
+          "Synthwave Legend"
+        );
+      }
+
+      return makeResult(
+        "Silent Disco Disaster",
+        "You chose to distract the crowd, but you did not pack the Tiny Speaker.",
+        "You perform an energetic silent dance. The crowd is distracted, mainly because nobody understands what is happening.",
+        "55%",
+        "Confusing Performer"
+      );
     }
 
-    if (choice === "explore" && hasItem("Flashlight")) {
-      return {
-        title: "Tunnel Pathfinder",
-        story: "Your flashlight reveals a secret tunnel. It leads to a futuristic laundry room, but one machine gives you a free neon sticker.",
-        stability: "76%",
-        badge: "City Pathfinder"
-      };
-    }
+    if (choice === "explore") {
+      if (hasItem("Flashlight")) {
+        return makeResult(
+          "Tunnel Pathfinder",
+          "You chose to search for another exit, and you packed a Flashlight. It reveals a hidden maintenance tunnel.",
+          "The tunnel leads to a futuristic laundry room, but one machine gives you a free neon sticker.",
+          "76%",
+          "City Pathfinder"
+        );
+      }
 
-    return {
-      title: "Accidental Street Art",
-      story: "A drone declares your luggage 'vintage art' and puts you in a gallery. Visitors debate what your confused expression means.",
-      stability: "60%",
-      badge: "Future Exhibit"
-    };
+      return makeResult(
+        "Laundry Portal",
+        "You chose to explore, but you did not pack a Flashlight. You enter the first dark tunnel you find.",
+        "You emerge in a laundry room and accidentally become part of a robot's sock-sorting experiment.",
+        "47%",
+        "Lost Sock Assistant"
+      );
+    }
   }
 
   if (currentEra.id === "moon") {
-    if (choice === "garden" && hasItem("Plant Seeds") && hasItem("Solar Charger")) {
-      return {
-        title: "Moon Garden Founder",
-        story: "You restore the greenhouse and plant new seeds. The robot names a basil leaf after you, which is sweet but impossible to frame.",
-        stability: "96%",
-        badge: "Lunar Botanist"
-      };
+    if (choice === "garden") {
+      if (hasAllItems(["Plant Seeds", "Solar Charger"])) {
+        return makeResult(
+          "Moon Garden Founder",
+          "You chose to help the greenhouse, and you packed Plant Seeds and a Solar Charger. You restore power and give the garden something new to grow.",
+          "The robot names a basil leaf after you, which is sweet but impossible to frame.",
+          "96%",
+          "Lunar Botanist"
+        );
+      }
+
+      return makeResult(
+        "Accidental Moon Mud",
+        "You chose to help the greenhouse, but you lacked either seeds or solar power.",
+        "You water an empty pot for twenty minutes before realising the gardening robot is quietly judging you.",
+        "52%",
+        "Space Gardener Trainee"
+      );
     }
 
-    if (choice === "repair" && hasItem("Duct Tape") && hasItem("Rope")) {
-      return {
-        title: "Moon Colony Fixer",
-        story: "You repair the oxygen pipe with duct tape and rope. The official manual is updated with: 'Honestly, This Works.'",
-        stability: "84%",
-        badge: "Emergency Engineer"
-      };
+    if (choice === "repair") {
+      if (hasAllItems(["Duct Tape", "Rope"])) {
+        return makeResult(
+          "Moon Colony Fixer",
+          "You chose to fix the oxygen pipe, and you packed Duct Tape and Rope. The emergency repair holds the pipe together.",
+          "The official manual gains a new chapter titled: 'Honestly, This Works.'",
+          "84%",
+          "Emergency Engineer"
+        );
+      }
+
+      return makeResult(
+        "Oxygen Pipe Panic",
+        "You chose to repair the pipe, but you lacked either Duct Tape or Rope.",
+        "You try holding the pipe together with your hands. This works for six seconds and earns applause from absolutely nobody.",
+        "44%",
+        "Very Temporary Engineer"
+      );
     }
 
-    if (choice === "float" && hasItem("Rubber Duck")) {
-      return {
-        title: "Zero-Gravity Duck Detective",
-        story: "You follow a floating rubber duck to a lost supply pod. The colony makes the duck honorary mayor for seven minutes.",
-        stability: "81%",
-        badge: "Space Detective"
-      };
-    }
+    if (choice === "float") {
+      if (hasItem("Rubber Duck")) {
+        return makeResult(
+          "Zero-Gravity Duck Detective",
+          "You chose to follow the floating object, and you packed a Rubber Duck. It helps you recognise another duck-shaped object drifting ahead.",
+          "It leads to a lost supply pod. The colony makes your duck honorary mayor for seven minutes.",
+          "81%",
+          "Space Detective"
+        );
+      }
 
-    return {
-      title: "Low-Gravity Tourist",
-      story: "You spend most of the trip learning not to float into the ceiling. The colony asks you to stop apologising to furniture.",
-      stability: "66%",
-      badge: "Space Visitor"
-    };
+      return makeResult(
+        "Ceiling Resident",
+        "You chose to follow the floating object, but you had no Rubber Duck to compare it with.",
+        "It was a floating mop. You follow it into a ceiling vent and must be rescued by a very tired robot.",
+        "53%",
+        "Low-Gravity Tourist"
+      );
+    }
   }
 }
 
@@ -349,7 +467,11 @@ function finishJourney(choice) {
   const isGoodOutcome = stabilityNumber >= 75;
 
   resultTitle.textContent = result.title;
-  resultStory.textContent = result.story;
+  resultStory.innerHTML = `
+    <strong>Why this happened:</strong> ${result.explanation}
+    <br><br>
+    ${result.story}
+  `;
   stabilityScore.textContent = result.stability;
   badgeName.textContent = result.badge;
 
