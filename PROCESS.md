@@ -1,97 +1,17 @@
 # Process
 
-## Starting idea
+I started with the idea of making a small game about packing for time travel. I liked the question of what somebody would bring if they did not know exactly where they were going, so I made a game where the player is given a random destination and can only pack three items. The destinations include a prehistoric jungle, a royal court, a neon future city, and a moon colony. I wanted the game to feel a little silly instead of being a serious survival game.
 
-I wanted to make a small game where a player has to make a meaningful choice with limited information. My starting idea was a time-travel packing game: the player is sent to a random historical or fictional time period and can only take three items.
+At first, the main interaction was just choosing three items from a list. The suitcase updated when an item was selected, and the player could remove an item by clicking it again. I also added a limit so that the player could not take more than three items. If they try to select a fourth item, the game tells them that the suitcase is full. The travel button remains unavailable until three items have been chosen.
 
-The intended experience was to make players ask, “What would actually help me here?” while keeping the tone playful and slightly absurd.
+After this, I added another choice after the player arrives at the destination. For example, in the prehistoric jungle, the player can hide in a cave, create a distraction, or offer the velociraptor a snack. The ending depends on both the action they choose and the items they packed. I added a travel report at the end with a title, time stability score, badge, and a short story about what happened.
 
-## First version
+I asked another person to try the game before I explained it. They understood how to choose items and start the journey, but they said that some endings felt random. They could not always tell why they had received a particular result. This was useful feedback because the game was meant to make the player's decisions matter.
 
-The first version of the game focused on the packing interaction:
+After the test, I changed the endings so that they explain the connection between the player's choice, their items, and the result. The travel report now starts with “Why this happened,” which explains what the player chose and whether they had packed the useful item. I also made separate success and failure outcomes for each action, instead of using one general failure ending. For example, distracting the dinosaur works well if the player packed a mirror, because the dinosaur argues with its own reflection. Without the mirror, the player tries an awkward dance instead. This made the game easier to understand and gave it more replay value.
 
-1. A random destination appears.
-2. The player chooses exactly three items.
-3. The suitcase preview updates immediately.
-4. The player can remove an item or draw a new destination.
-5. The game prevents the player from choosing more than three items.
+I also added visual feedback for the endings. A high time stability score gives the player confetti and a green result card, while a lower score gives warning symbols, a pink result card, and a small shaking effect. This gives immediate feedback even before the player reads the whole report.
 
-I used four destinations:
+I used ChatGPT Codex while making the project. It helped me brainstorm the original idea, learn how to build the game in HTML, CSS, and JavaScript, and understand GitHub Desktop and VS Code. I kept the suggestion to use a three-item suitcase limit because it made each item choice more important. I considered adding a different illustration for every ending, but I decided not to do this because it would require many image files and would take attention away from the game interaction. I used text, badges, and simple animated effects instead.
 
-- Prehistoric Jungle
-- The Royal Court
-- Neon City
-- Moon Colony
-
-The initial implementation already handled ordinary mistakes. For example, the travel button stays disabled until exactly three items are selected, and the game explains that the suitcase is full when the player tries to choose a fourth item.
-
-## Design and code changes
-
-I expanded the game so that packing items was not the only interaction. After travelling, the player now has to make one more decision based on the situation they arrive in.
-
-For example, in the Prehistoric Jungle, the player can:
-
-- Hide in a cave
-- Create a distraction
-- Offer the velociraptor a snack
-
-The final result is based on both the player's chosen action and the items in their suitcase. This created a clearer interaction loop:
-
-> pack items → travel → make a decision → see the consequence → play again
-
-I also added a travel report with:
-
-- A title for the outcome
-- An explanation of why the outcome happened
-- A humorous story
-- A time stability score
-- A badge
-- A positive or negative visual effect
-
-High-stability outcomes show confetti, while lower-stability outcomes show warning symbols and a shaking result card.
-
-## User trial
-
-I asked one person to try the game without explaining the rules first.
-
-They understood how to select items, fill the suitcase, and begin time travel. However, they said that some of the early outcomes were difficult to understand. They could not always tell how their packed items and final choice had led to the ending. Some outcomes felt random or too absurd.
-
-## Response to feedback
-
-I changed the game after the user trial.
-
-Originally, each destination had a few successful outcomes and one general failure outcome. This meant that different player choices could sometimes lead to the same confusing result.
-
-I changed this into action-specific outcomes. Each action now has a successful version and a failed version. The travel report also begins with a **“Why this happened”** explanation. It tells the player:
-
-1. Which action they chose
-2. Which useful item or items they did or did not pack
-3. How that caused the final outcome
-
-For example, choosing “Create a distraction” in the jungle works well when the player packed a Mirror, because the velociraptor is distracted by its reflection. Without a Mirror, the player instead attempts an awkward dance, leading to a different outcome.
-
-This revision made the relationship between input, response, and feedback much clearer.
-
-## AI tools used
-
-I used ChatGPT Codex as a learning and development assistant.
-
-It helped me:
-
-- Brainstorm the game concept
-- Break the project into small HTML, CSS, and JavaScript steps
-- Explain how to use GitHub Desktop and VS Code
-- Suggest item combinations and branching outcomes
-- Help write and revise JavaScript logic
-- Suggest usability improvements after the user test
-
-One AI suggestion I kept was using a strict three-item suitcase limit. This made the player’s choices more meaningful and created clear feedback when they tried to select too many items.
-
-One suggestion I changed was using illustrated images for every ending. I decided not to use images because creating and managing many separate image files would make the project larger and distract from the interaction. Instead, I used animated confetti and warning effects to show whether an outcome was successful or chaotic.
-
-## Credits
-
-- Game concept, writing, visual design, and testing: Rachel Liu
-- Programming support and learning assistance: ChatGPT Codex
-- Item icons: standard Unicode emoji
-- No external code libraries, APIs, images, or data were used.
+The game uses standard Unicode emoji for the item icons. No external libraries, APIs, images, or borrowed code were used.

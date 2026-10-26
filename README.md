@@ -1,36 +1,39 @@
-# time-travel-suitcase
-A small interactive time-travel packing game
 # Time Travel Baggage Check
 
-A small interactive browser game about packing for an unexpected journey through time.
+Time Travel Baggage Check is a small interactive browser game about packing for an unexpected journey through time.
 
-## Idea
+The player is given a random destination, such as a prehistoric jungle, a royal court, a neon future city, or a moon colony. They can only pack three items, then must make one more decision after arriving. Their packed items and final decision decide what happens next.
 
-You are a time traveller preparing for a randomly assigned destination. Before entering the time portal, you must choose exactly three items to pack in your suitcase.
+![Screenshot of Time Travel Baggage Check](screenshot.png)
 
-Your destination may be a prehistoric jungle, a royal court, a futuristic neon city, or a moon colony. Each place gives you a short clue, so you can think about which items may help you survive.
+## How to play
 
-## Intended user
+Choose three items to pack in your suitcase. Once the suitcase is full, select **Begin time travel**.
 
-This game is for people who enjoy quick, playful choices and imaginative “what would you bring?” scenarios.
+After arriving, choose what to do in the situation shown on screen. The travel report explains the outcome, shows a time stability score, and unlocks a badge. Good outcomes have confetti, while more chaotic outcomes show warning effects.
+
+The game can be replayed by selecting **Pack for another journey**.
 
 ## Main interaction
 
-1. A random time-travel destination appears.
-2. The player chooses three items from the packing list.
-3. The suitcase preview and item counter update immediately.
-4. The player can remove an item by clicking it again.
-5. Once three items are selected, the player can begin time travel.
+The game uses a simple input, response, and feedback loop:
 
-## Features
+- The player selects three items.
+- The selected items affect which outcomes are possible.
+- The player makes a decision after arriving at a destination.
+- The game explains why that choice and those items led to the final result.
 
-- Random destination generator
-- Twelve selectable suitcase items
-- Three-item packing limit
-- Live suitcase preview
-- Clear feedback after every action
-- A warning if the player tries to pack more than three items
-- A button to draw a new destination and start over
+For example, in the prehistoric jungle, using a mirror to distract a velociraptor leads to a successful outcome because the dinosaur becomes distracted by its own reflection. Choosing the same action without a mirror leads to a different result.
+
+## Error handling
+
+The game handles several common actions clearly:
+
+- The travel button stays disabled until exactly three items are selected.
+- The player is told when the suitcase is full.
+- Clicking an already selected item removes it from the suitcase.
+- Once a journey starts, the player cannot continue changing their items.
+- The player can restart with a new destination after receiving a result.
 
 ## How to run
 
@@ -39,19 +42,18 @@ No installation is required.
 1. Download or clone this repository.
 2. Open the project folder.
 3. Open `index.html` in a web browser.
-4. Choose three items and begin your time-travel journey.
+4. Play the game.
+
+The project uses only HTML, CSS, and JavaScript. It does not need any external libraries, APIs, or accounts.
 
 ## Known limitations
 
-The current version includes the packing interaction and destination selection. The next stage will add destination events, outcomes based on item combinations, and a final travel report.
+The game currently has four destinations. Each destination has three possible actions, and each action has a success or failure outcome depending on the items packed. More destinations and item combinations could be added in a future version.
 
 ## Credits
 
-- Game concept, writing, design, and code: Rachel Liu
-- Item emojis are standard Unicode emoji characters.
-- Built with HTML, CSS, and JavaScript.
-- No external images, code libraries, or APIs are used.
+Game concept, writing, design, and code by Rachel Liu.
 
-## Screenshot
+Item icons use standard Unicode emoji characters.
 
-A gameplay screenshot will be added when the final version is complete.
+ChatGPT Codex was used as a development and learning assistant for brainstorming, coding support, and testing improvements. No external code libraries, images, data, or APIs were used.
