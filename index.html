@@ -19,7 +19,18 @@
       <p class="section-label">YOUR DESTINATION</p>
       <h2 id="era-name">Scanning the timeline...</h2>
       <p id="era-clue">A destination will appear shortly.</p>
-      <button id="reroll-button" type="button">Draw a new destination</button>
+
+      <div class="travel-tools">
+        <button id="reroll-button" type="button">Draw a new destination</button>
+        <button id="tip-button" class="tool-button" type="button">
+          Request temporal tip (1 left)
+        </button>
+        <button id="sound-button" class="tool-button" type="button" aria-pressed="true">
+          Sound: On
+        </button>
+      </div>
+
+      <p id="tip-message" class="tip-message" aria-live="polite"></p>
     </section>
 
     <section class="packing-area">
@@ -31,9 +42,7 @@
         <p id="selection-count" class="selection-count">0 / 3 selected</p>
       </div>
 
-      <div id="items-grid" class="items-grid">
-        <!-- Item buttons will be added by JavaScript. -->
-      </div>
+      <div id="items-grid" class="items-grid"></div>
     </section>
 
     <section class="suitcase-card">
@@ -56,10 +65,7 @@
       <p class="section-label">YOU HAVE ARRIVED</p>
       <h2 id="event-title">A difficult decision awaits</h2>
       <p id="event-description"></p>
-
-      <div id="choices-grid" class="choices-grid">
-        <!-- Choice buttons will be added by JavaScript. -->
-      </div>
+      <div id="choices-grid" class="choices-grid"></div>
     </section>
 
     <section id="result-card" class="result-card" hidden>

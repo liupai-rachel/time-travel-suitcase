@@ -362,3 +362,42 @@ h2 {
     transform: translateX(-4px);
   }
 }
+.travel-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.tool-button {
+  color: var(--ink);
+  background: var(--panel-light);
+}
+
+.tool-button:hover:not(:disabled) {
+  background: rgba(100, 92, 175, 0.95);
+}
+
+.tip-message {
+  min-height: 24px;
+  margin: 16px 0 0;
+  color: var(--mint);
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.item-description {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+@media (max-width: 620px) {
+  .travel-tools {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

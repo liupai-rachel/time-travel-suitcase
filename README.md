@@ -4,15 +4,13 @@ Time Travel Baggage Check is a small interactive browser game about packing for 
 
 The player is given a random destination, such as a prehistoric jungle, a royal court, a neon future city, or a moon colony. They can only pack three items, then must make one more decision after arriving. Their packed items and final decision decide what happens next.
 
-![Screenshot of Time Travel Baggage Check](screenshot.png)
-
 ## How to play
 
-Choose three items to pack in your suitcase. Once the suitcase is full, select **Begin time travel**.
+Choose three items to pack in your suitcase. Once the suitcase is full, select Begin time travel.
 
 After arriving, choose what to do in the situation shown on screen. The travel report explains the outcome, shows a time stability score, and unlocks a badge. Good outcomes have confetti, while more chaotic outcomes show warning effects.
 
-The game can be replayed by selecting **Pack for another journey**.
+The game can be replayed by selecting Pack for another journey.
 
 ## Main interaction
 
