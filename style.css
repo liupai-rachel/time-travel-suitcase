@@ -223,3 +223,71 @@ h2 {
     gap: 6px;
   }
 }
+.arrival-card,
+.result-card {
+  margin-top: 20px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--panel);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+.arrival-card h2,
+.result-card h2 {
+  margin-bottom: 12px;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+}
+
+#event-description,
+#result-story {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.08rem;
+  line-height: 1.6;
+}
+
+.choices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.choice-button {
+  min-height: 76px;
+  padding: 14px;
+  color: #18142e;
+  text-align: center;
+  background: var(--mint);
+}
+
+.report-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.report-stats p {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 16px;
+  color: var(--muted);
+  background: var(--panel-light);
+}
+
+.report-stats strong {
+  color: var(--mint);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 620px) {
+  .choices-grid,
+  .report-stats {
+    grid-template-columns: 1fr;
+  }
+}
