@@ -291,3 +291,74 @@ h2 {
     grid-template-columns: 1fr;
   }
 }
+.result-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.good-outcome {
+  border-color: rgba(121, 242, 208, 0.8);
+  background: linear-gradient(135deg, rgba(27, 95, 91, 0.95), rgba(32, 29, 70, 0.92));
+}
+
+.bad-outcome {
+  border-color: rgba(255, 131, 200, 0.8);
+  background: linear-gradient(135deg, rgba(94, 33, 74, 0.95), rgba(32, 29, 70, 0.92));
+  animation: wobble 0.35s ease-in-out 2;
+}
+
+.outcome-effect {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  top: -24px;
+  width: 10px;
+  height: 18px;
+  border-radius: 4px;
+  animation: fall 2.4s ease-in forwards;
+}
+
+.warning-symbol {
+  position: absolute;
+  top: 10px;
+  font-size: 2rem;
+  opacity: 0;
+  animation: warning-float 1.8s ease-out forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(520px) rotate(540deg);
+    opacity: 0;
+  }
+}
+
+@keyframes warning-float {
+  20% {
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: translateY(180px) rotate(18deg);
+    opacity: 0;
+  }
+}
+
+@keyframes wobble {
+  25% {
+    transform: translateX(-7px) rotate(-0.4deg);
+  }
+
+  50% {
+    transform: translateX(7px) rotate(0.4deg);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+}

@@ -95,6 +95,7 @@ const resultStory = document.querySelector("#result-story");
 const stabilityScore = document.querySelector("#stability-score");
 const badgeName = document.querySelector("#badge-name");
 const playAgainButton = document.querySelector("#play-again-button");
+const outcomeEffect = document.querySelector("#outcome-effect");
 
 let selectedItems = [];
 let currentEra = null;
@@ -105,9 +106,7 @@ function hasItem(itemName) {
 }
 
 function chooseEra() {
-  const newEra = eras[Math.floor(Math.random() * eras.length)];
-
-  currentEra = newEra;
+  currentEra = eras[Math.floor(Math.random() * eras.length)];
   selectedItems = [];
   journeyComplete = false;
 
@@ -141,7 +140,7 @@ function renderGame() {
   }).join("");
 
   if (selectedItems.length === 0) {
-    suitcaseItems.innerHTML = `<p class="empty-suitcase">Your suitcase is empty.</p>`;
+    suitcaseItems.innerHTML = "<p class=\"empty-suitcase\">Your suitcase is empty.</p>";
   } else {
     suitcaseItems.innerHTML = selectedItems.map((itemName) => {
       return `<p class="suitcase-tag">${itemName}</p>`;
@@ -212,7 +211,7 @@ function getJourneyResult(choice) {
     if (choice === "hide" && hasItem("Flashlight") && hasItem("Rope")) {
       return {
         title: "Cave Explorer",
-        story: "Your flashlight reveals a safe cave, and the rope gets you up a cliff. You also discover that prehistoric bats are somehow already judging your outfit.",
+        story: "Your flashlight reveals a safe cave, and the rope gets you up a cliff. Prehistoric bats are somehow already judging your outfit.",
         stability: "78%",
         badge: "Jurassic Survivor"
       };
@@ -221,7 +220,7 @@ function getJourneyResult(choice) {
     if (choice === "offer" && hasItem("Snack Box")) {
       return {
         title: "Dinosaur Dinner Host",
-        story: "The velociraptor loves your snacks so much that it follows you around for dessert. You leave the past with a new pet and several bite marks on your travel insurance form.",
+        story: "The velociraptor loves your snacks and follows you around for dessert. You return with a new pet and a ruined insurance form.",
         stability: "83%",
         badge: "Prehistoric Food Critic"
       };
@@ -229,7 +228,7 @@ function getJourneyResult(choice) {
 
     return {
       title: "Fern-Based Defence Strategy",
-      story: "You hide behind a fern. Unfortunately, it is a very small fern. Fortunately, the dinosaur is briefly distracted by your extremely confusing suitcase.",
+      story: "You hide behind a very small fern. The dinosaur is briefly distracted by your extremely confusing suitcase.",
       stability: "52%",
       badge: "Fern Hider"
     };
@@ -239,7 +238,7 @@ function getJourneyResult(choice) {
     if (choice === "join" && hasItem("Fake Moustache") && hasItem("Mirror")) {
       return {
         title: "The Mysterious Adviser",
-        story: "Your fake moustache is so impressive that the king asks it for political advice. By sunset, you have accidentally declared a national Moustache Appreciation Day.",
+        story: "Your fake moustache is so impressive that the king asks it for political advice. You accidentally declare a national Moustache Appreciation Day.",
         stability: "94%",
         badge: "Court Insider"
       };
@@ -248,7 +247,7 @@ function getJourneyResult(choice) {
     if (choice === "investigate" && hasItem("Blank Notebook")) {
       return {
         title: "Royal Historian",
-        story: "You copy the secret letter and uncover a plot involving a missing crown, three geese, and a duke who is being dramatic on purpose.",
+        story: "You uncover a plot involving a missing crown, three geese, and a duke who is being dramatic on purpose.",
         stability: "85%",
         badge: "Keeper of Gossip"
       };
@@ -257,7 +256,7 @@ function getJourneyResult(choice) {
     if (choice === "kitchen" && hasItem("Snack Box")) {
       return {
         title: "Palace Snack Expert",
-        story: "The palace chef tries your snacks and declares them 'mysterious future spices'. You leave with a crown-shaped biscuit and a job offer you politely ignore.",
+        story: "The palace chef calls your snacks 'mysterious future spices'. You leave with a crown-shaped biscuit and a job offer.",
         stability: "74%",
         badge: "Banquet Escapee"
       };
@@ -265,7 +264,7 @@ function getJourneyResult(choice) {
 
     return {
       title: "Uninvited Banquet Guest",
-      story: "A guard mistakes your suitcase for a fashionable hat. You escape the palace just before someone asks you to model it for a portrait.",
+      story: "A guard mistakes your suitcase for a fashionable hat. You escape just before someone asks you to model it for a portrait.",
       stability: "61%",
       badge: "Royal Confusion"
     };
@@ -275,7 +274,7 @@ function getJourneyResult(choice) {
     if (choice === "fix" && hasItem("Solar Charger") && hasItem("Duct Tape")) {
       return {
         title: "Neon City Repair Hero",
-        story: "You recharge the robot and repair it with duct tape. It calls this 'ancient human engineering' and gives you a five-star review in robot language.",
+        story: "You recharge the robot and repair it with duct tape. It calls this 'ancient human engineering' and gives you a five-star review.",
         stability: "89%",
         badge: "Robot Mechanic"
       };
@@ -284,7 +283,7 @@ function getJourneyResult(choice) {
     if (choice === "perform" && hasItem("Tiny Speaker")) {
       return {
         title: "Underground DJ",
-        story: "Your tiny speaker plays one retro song. Within minutes, every robot is dancing badly and the city gates open out of pure embarrassment.",
+        story: "Your speaker plays one retro song. Every robot starts dancing badly, and the city gates open out of embarrassment.",
         stability: "80%",
         badge: "Synthwave Legend"
       };
@@ -293,7 +292,7 @@ function getJourneyResult(choice) {
     if (choice === "explore" && hasItem("Flashlight")) {
       return {
         title: "Tunnel Pathfinder",
-        story: "Your flashlight reveals a secret tunnel. It leads to a futuristic laundry room, but luckily one machine gives you a free neon sticker.",
+        story: "Your flashlight reveals a secret tunnel. It leads to a futuristic laundry room, but one machine gives you a free neon sticker.",
         stability: "76%",
         badge: "City Pathfinder"
       };
@@ -301,7 +300,7 @@ function getJourneyResult(choice) {
 
     return {
       title: "Accidental Street Art",
-      story: "A drone declares your luggage 'vintage art' and places you in a gallery. Visitors spend hours discussing what your confused expression represents.",
+      story: "A drone declares your luggage 'vintage art' and puts you in a gallery. Visitors debate what your confused expression means.",
       stability: "60%",
       badge: "Future Exhibit"
     };
@@ -311,7 +310,7 @@ function getJourneyResult(choice) {
     if (choice === "garden" && hasItem("Plant Seeds") && hasItem("Solar Charger")) {
       return {
         title: "Moon Garden Founder",
-        story: "You restore power to the greenhouse and plant the first new seeds in years. The robot names a basil leaf after you, which is sweet but impossible to frame.",
+        story: "You restore the greenhouse and plant new seeds. The robot names a basil leaf after you, which is sweet but impossible to frame.",
         stability: "96%",
         badge: "Lunar Botanist"
       };
@@ -320,7 +319,7 @@ function getJourneyResult(choice) {
     if (choice === "repair" && hasItem("Duct Tape") && hasItem("Rope")) {
       return {
         title: "Moon Colony Fixer",
-        story: "You repair the oxygen pipe with duct tape and rope. The official manual is immediately updated with a new chapter titled: 'Honestly, This Works.'",
+        story: "You repair the oxygen pipe with duct tape and rope. The official manual is updated with: 'Honestly, This Works.'",
         stability: "84%",
         badge: "Emergency Engineer"
       };
@@ -329,7 +328,7 @@ function getJourneyResult(choice) {
     if (choice === "float" && hasItem("Rubber Duck")) {
       return {
         title: "Zero-Gravity Duck Detective",
-        story: "You follow a floating rubber duck to a lost supply pod. The colony celebrates by making the duck honorary mayor for exactly seven minutes.",
+        story: "You follow a floating rubber duck to a lost supply pod. The colony makes the duck honorary mayor for seven minutes.",
         stability: "81%",
         badge: "Space Detective"
       };
@@ -337,7 +336,7 @@ function getJourneyResult(choice) {
 
     return {
       title: "Low-Gravity Tourist",
-      story: "You spend most of the trip learning not to float into the ceiling. The colony gives you a moon rock and a polite reminder to stop apologising to furniture.",
+      story: "You spend most of the trip learning not to float into the ceiling. The colony asks you to stop apologising to furniture.",
       stability: "66%",
       badge: "Space Visitor"
     };
@@ -346,15 +345,53 @@ function getJourneyResult(choice) {
 
 function finishJourney(choice) {
   const result = getJourneyResult(choice);
+  const stabilityNumber = Number(result.stability.replace("%", ""));
+  const isGoodOutcome = stabilityNumber >= 75;
 
   resultTitle.textContent = result.title;
   resultStory.textContent = result.story;
   stabilityScore.textContent = result.stability;
   badgeName.textContent = result.badge;
 
+  resultCard.classList.remove("good-outcome", "bad-outcome");
+  outcomeEffect.innerHTML = "";
+
+  if (isGoodOutcome) {
+    resultCard.classList.add("good-outcome");
+
+    const colours = ["#79f2d0", "#ff83c8", "#f7f4ff", "#ffd166"];
+
+    for (let i = 0; i < 36; i += 1) {
+      const confetti = document.createElement("span");
+
+      confetti.className = "confetti";
+      confetti.style.left = `${Math.random() * 100}%`;
+      confetti.style.background = colours[i % colours.length];
+      confetti.style.animationDelay = `${Math.random() * 0.8}s`;
+
+      outcomeEffect.appendChild(confetti);
+    }
+  } else {
+    resultCard.classList.add("bad-outcome");
+
+    for (let i = 0; i < 10; i += 1) {
+      const warning = document.createElement("span");
+
+      warning.className = "warning-symbol";
+      warning.textContent = "⚠";
+      warning.style.left = `${8 + Math.random() * 84}%`;
+      warning.style.animationDelay = `${Math.random() * 0.5}s`;
+
+      outcomeEffect.appendChild(warning);
+    }
+  }
+
   arrivalCard.hidden = true;
   resultCard.hidden = false;
-  gameMessage.textContent = "Journey complete. Your travel report is ready.";
+
+  gameMessage.textContent = isGoodOutcome
+    ? "Excellent time travel. History is mostly safe."
+    : "A chaotic journey, but at least you returned.";
 
   resultCard.scrollIntoView({
     behavior: "smooth",
